@@ -1,6 +1,6 @@
 {
     "version": "0.2.0",
-    "projectName": "nyartos",
+    "projectName": "PROJECTNAME", // TODO: add project name
     "configurations": [
         {
             "name": "STlink launch",
