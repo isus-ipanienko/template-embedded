@@ -1,1 +1,22 @@
-
+{
+    "version": "0.2.0",
+    "projectName": "nyartos",
+    "configurations": [
+        {
+            "name": "STlink launch",
+            "cwd": "${workspaceRoot}",
+            "executable": "${workspaceRoot}/build/foobar.elf",  // TODO: executable
+            "request": "launch",
+            "type": "cortex-debug",
+            "servertype": "openocd",  // TODO: server
+            "device": "STM32F103RB", // TODO: device
+            "configFiles": [
+                "interface/stlink.cfg",  // TODO: interface
+                "target/stm32f1x.cfg"  // TODO: target
+            ],
+            "gdbPath": "", // TODO: gdb path
+            "svdFile": "", // TODO: svd File
+            "preLaunchTask": "Build all",
+        },
+    ]
+}

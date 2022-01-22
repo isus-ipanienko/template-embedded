@@ -1,0 +1,26 @@
+{
+    "configurations": [
+        {
+            "name": "STM32F1",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE",
+                "USE_HAL_DRIVER",
+                "STM32F103xB" // TODO: device
+            ],
+            "cStandard": "gnu11",
+            "cppStandard": "gnu++14",
+            "intelliSenseMode": "gcc-arm",
+            "compilerPath": "", // TODO: compiler path
+            "compilerArgs": [  // TODO: compiler args
+                "-mcpu=cortex-m3",
+                "-mthumb"
+            ]
+        }
+    ],
+    "version": 4
+}
