@@ -10,13 +10,13 @@
                 "UNICODE",
                 "_UNICODE",
                 "USE_HAL_DRIVER",
-                "STM32F103xB" // TODO: device
+                "STM32F103xB"
             ],
             "cStandard": "gnu11",
             "cppStandard": "gnu++14",
             "intelliSenseMode": "gcc-arm",
-            "compilerPath": "", // TODO: compiler path
-            "compilerArgs": [  // TODO: compiler args
+            "compilerPath": "C:/MinGW/bin/arm-none-eabi-gcc.exe",
+            "compilerArgs": [
                 "-mcpu=cortex-m3",
                 "-mthumb"
             ]

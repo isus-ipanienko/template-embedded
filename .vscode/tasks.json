@@ -6,7 +6,7 @@
             "group": "build",
             "type": "shell",
             "command": "make",
-            "args": ["all", "-j24"] // TODO: core count
+            "args": ["all", "-j24"]
         },
         {
             "label": "Build clean",
@@ -20,7 +20,7 @@
             "group": "build",
             "type": "shell",
             "command": "make",
-            "args": ["-j24","stflash"] // TODO: core count
+            "args": ["-j24","stflash"]
         }
     ]
 }
