@@ -14,7 +14,7 @@ build: cmake
 	$(MAKE) -C ${BUILD_DIR} --no-print-directory
 
 flash: all
-	openocd -f interface/stlink.cfg -f target/stm32f1x.cfg -c "program ${BUILD_DIR}/binary.elf verify reset exit" // TODO add binary name
+	openocd -f interface/stlink.cfg -f target/stm32f1x.cfg -c "program ${BUILD_DIR}/nyartos.elf verify reset exit"
 	
 clean:
 	

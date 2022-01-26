@@ -3,11 +3,9 @@ set(CMAKE_SYSTEM_PROCESSOR arm)
 
 set(TOOLCHAIN_PREFIX arm-none-eabi-)
 set(FLAGS
-    "-fdata-sections -ffunction-sections -flto \
-    --specs=nano.specs -Wl,--gc-sections")
+    "-fdata-sections -ffunction-sections -flto --specs=nano.specs -Wl,--gc-sections")
 set(CPP_FLAGS
-    "-fno-rtti -fno-exceptions \
-    -fno-threadsafe-statics")
+    "-fno-rtti -fno-exceptions -fno-threadsafe-statics")
 
 set(CMAKE_SYSTEM_NAME Generic)
 set(CMAKE_C_COMPILER ${TOOLCHAIN_PREFIX}gcc ${FLAGS})

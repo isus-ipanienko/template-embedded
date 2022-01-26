@@ -1,6 +1,5 @@
 cmake_minimum_required(VERSION 3.12)
 # ##############################################################################
-# TODO: this section
 
 set(CMAKE_GENERATOR "MinGW Makefiles")
 set(CMAKE_BUILD_RPATH "build")
@@ -8,7 +7,7 @@ set(CMAKE_BUILD_TYPE "Debug")
 set(CMAKE_TOOLCHAIN_FILE "gcc-arm-none-eabi.cmake")
 set(CMAKE_EXPORT_COMPILE_COMMANDS "ON")
 
-project(PROJECTNAME)
+project(nyartos)
 set(PROJECT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/App)
 
 set(MCU_FAMILY STM32F1xx)
@@ -69,10 +68,21 @@ target_include_directories(${EXECUTABLE} PRIVATE
 # Compiler and linker options
 target_compile_options(${EXECUTABLE} PRIVATE
     ${CPU_PARAMETERS}
+    -fdiagnostics-color=always
     -Wall
     -Wextra
     -Wpedantic
+    -Wduplicated-branches
+    -Wduplicated-cond
+    -Wlogical-op
+    -Wmissing-declarations
+    -Wno-expansion-to-defined
     -Wno-unused-parameter
+    -Wno-enum-conversion
+    -Wshadow
+    -Wstack-usage=256
+    -Wuninitialized
+    -Wunsafe-loop-optimizations
     -Werror
     $<$<COMPILE_LANGUAGE:CXX>:
         -Wno-volatile
