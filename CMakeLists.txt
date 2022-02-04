@@ -1,4 +1,7 @@
 cmake_minimum_required(VERSION 3.12)
+
+# ##############################################################################
+# Project Config
 # ##############################################################################
 
 set(CMAKE_GENERATOR "MinGW Makefiles")
@@ -16,46 +19,47 @@ set(CPU_PARAMETERS
     -mcpu=cortex-m3
     -mthumb)
 
-set(STARTUP_SCRIPT ${CMAKE_CURRENT_SOURCE_DIR}/CubeMX/startup_stm32f103xb.s)
-set(MCU_LINKER_SCRIPT ${CMAKE_CURRENT_SOURCE_DIR}/CubeMX/STM32F103RBTx_FLASH.ld)
-# ##############################################################################
-
-set(EXECUTABLE ${CMAKE_PROJECT_NAME})
-enable_language(C CXX ASM)
-set(CMAKE_C_STANDARD 11)
-set(CMAKE_C_STANDARD_REQUIRED ON)
-set(CMAKE_C_EXTENSIONS ON)
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS ON)
-
-# Headers
+set(PROJECT_INCLUDE_DIRECTORIES
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/App
+    ${CMAKE_CURRENT_SOURCE_DIR}/App/example_tasks
+    ${CMAKE_CURRENT_SOURCE_DIR}/App/nyartos
+    ${CMAKE_CURRENT_SOURCE_DIR}/App/nyartos/port/GCC/ARM/CORTEX_M3)
 set(CUBEMX_INCLUDE_DIRECTORIES
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/Inc
     ${CMAKE_CURRENT_SOURCE_DIR}/Drivers/${MCU_FAMILY}_HAL_Driver/Inc
     ${CMAKE_CURRENT_SOURCE_DIR}/Drivers/${MCU_FAMILY}_HAL_Driver/Inc/Legacy
     ${CMAKE_CURRENT_SOURCE_DIR}/Drivers/CMSIS/Device/ST/${MCU_FAMILY}/Include
     ${CMAKE_CURRENT_SOURCE_DIR}/Drivers/CMSIS/Include)
-set(PROJECT_INCLUDE_DIRECTORIES
-    ${CMAKE_CURRENT_SOURCE_DIR}
-    ${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_DIR}
-    ${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_DIR}/*)
+
+set(STARTUP_SCRIPT ${CMAKE_CURRENT_SOURCE_DIR}/CubeMX/startup_stm32f103xb.s)
+set(MCU_LINKER_SCRIPT ${CMAKE_CURRENT_SOURCE_DIR}/CubeMX/STM32F103RBTx_FLASH.ld)
+
+set(EXECUTABLE ${CMAKE_PROJECT_NAME})
+
+# Language Settings
+enable_language(C ASM CXX)
+set(CMAKE_C_STANDARD 99)
+set(CMAKE_C_STANDARD_REQUIRED ON)
+set(CMAKE_C_EXTENSIONS ON)
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS ON)
 
 # Sources
 file(GLOB_RECURSE STM32CUBEMX_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/*.c
     ${CMAKE_CURRENT_SOURCE_DIR}/Drivers/*.c)
 file(GLOB_RECURSE PROJECT_SOURCES FOLLOW_SYMLINKS
-    ${PROJECT_DIR}/*.cpp
     ${PROJECT_DIR}/*.c)
 
-# Executable files
+# Executable Files
 add_executable(${EXECUTABLE}
     ${STM32CUBEMX_SOURCES} 
     ${PROJECT_SOURCES}
     ${STARTUP_SCRIPT})
 
-# Embedded macros(defines)
+# Embedded Macros (defines)
 target_compile_definitions(${EXECUTABLE} PRIVATE
     ${MCU_MODEL}
     USE_HAL_DRIVER)
