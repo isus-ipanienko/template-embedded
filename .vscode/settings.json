@@ -1,3 +1,19 @@
 {
     "cortex-debug.gdbPath": "C:/MinGW/bin/gdb.exe",
+    "files.associations": {
+        "*.c": "c",
+        "stdint.h": "c",
+        "stdint-gcc.h": "c",
+        "cstdint": "c",
+        "nyartos_port.h": "c",
+        "nya_port.h": "c",
+        "nyartos_private.h": "c",
+        "nyartos.h": "c",
+        "nyartos_private_port.h": "c",
+        "nyartos_config.h": "c",
+        "main.h": "c",
+        "stm32f1xx_hal.h": "c"
+    },
+    "cortex-debug.variableUseNaturalFormat": false,
+    "cortex-debug.registerUseNaturalFormat": false,
 }
