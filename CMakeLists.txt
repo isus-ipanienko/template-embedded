@@ -23,7 +23,8 @@ set(PROJECT_INCLUDE_DIRECTORIES
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/App
     ${CMAKE_CURRENT_SOURCE_DIR}/App/example_tasks
-    ${CMAKE_CURRENT_SOURCE_DIR}/App/nyartos
+    ${CMAKE_CURRENT_SOURCE_DIR}/App/nyartos/core
+    ${CMAKE_CURRENT_SOURCE_DIR}/App/nyartos/inc
     ${CMAKE_CURRENT_SOURCE_DIR}/App/nyartos/port/GCC/ARM/CORTEX_M3)
 set(CUBEMX_INCLUDE_DIRECTORIES
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/Inc
@@ -51,15 +52,16 @@ file(GLOB_RECURSE STM32CUBEMX_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/*.c
     ${CMAKE_CURRENT_SOURCE_DIR}/Drivers/*.c)
 file(GLOB_RECURSE PROJECT_SOURCES FOLLOW_SYMLINKS
-    ${PROJECT_DIR}/*.c)
+    ${PROJECT_DIR}/*.c
+    ${PROJECT_DIR}/*.s)
 
-# Executable Files
+# Executable files
 add_executable(${EXECUTABLE}
-    ${STM32CUBEMX_SOURCES} 
+    ${STM32CUBEMX_SOURCES}
     ${PROJECT_SOURCES}
     ${STARTUP_SCRIPT})
 
-# Embedded Macros (defines)
+# Embedded macros(defines)
 target_compile_definitions(${EXECUTABLE} PRIVATE
     ${MCU_MODEL}
     USE_HAL_DRIVER)
@@ -93,7 +95,7 @@ target_compile_options(${EXECUTABLE} PRIVATE
         -Wold-style-cast
         -Wuseless-cast
         -Wsuggest-override>
-    $<$<CONFIG:Debug>:-Os -g3 -ggdb>
+    $<$<CONFIG:Debug>:-O0 -g3 -ggdb>
     $<$<CONFIG:Release>:-Os -g0>)
 
 target_link_options(${EXECUTABLE} PRIVATE
